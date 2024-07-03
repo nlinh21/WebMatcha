@@ -1156,81 +1156,530 @@ footer .bottom-footer {
     color: #fff;
 }
 /*View product*/
-.products .box-container{
+/* Container setup for products */
+.products .box-container {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
     justify-content: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
 }
-.products .box-container .box{
+
+/* Individual product box styling */
+.products .box-container .box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1rem;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.products .box-container .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Product image styling */
+.products .box-container .box .img {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của box */
+    height: auto;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.products .box-container .box:hover .img {
+    transform: scale(1.05);
+}
+
+/* Product name styling */
+.products .box-container .box .name {
+    font-size: 1.2rem;
+    color: #333;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Button container styling */
+.products .box-container .box .button {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-top: auto; /* Đẩy nút "Buy Now" xuống cuối */
+}
+
+/* Individual buttons and links styling */
+.products .box-container .box .button button,
+.products .box-container .box .button a {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem; /* Thu nhỏ padding cho các button */
+    transition: transform 0.3s ease;
+}
+
+.products .box-container .box .button button:hover,
+.products .box-container .box .button a:hover {
+    transform: scale(1.1);
+}
+
+.products .box-container .box .button img.icon {
+    width: 20px; /* Thu nhỏ kích thước icon */
+    height: 20px;
+}
+
+/* Flex container for price and quantity input */
+.products .box-container .box .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+/* Price styling */
+.products .box-container .box .price {
+    font-size: 1.2rem;
+    color: var(--green);
+    font-weight: bold;
+}
+
+/* Quantity input styling */
+.products .box-container .box input[type="number"] {
+    width: 4rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* "Buy Now" button styling */
+.products .box-container .box .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    color: black;
+    background: var(--light-green);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+    text-align: center;
+}
+
+.products .box-container .box .btn:hover {
+    background: var(--green);
+}
+
+/* Hidden message for no products */
+.products .box-container .box .empty {
+    display: none;
+}
+.products .cart-total{
     box-shadow: var(--box-shadow);
     border-radius: .5rem;
-    padding: 2rem, 1rem;
-    margin: 1rem;
-    position: relative;
+    max-width: 50vw;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 2rem;
 }
-.products .box-container .box .img{
-    width: 80%;
-    height: auto;
-}
-.products .box-container .box .name{
-    font-size: 1 .2rem;
+.products .cart-total p{
+    padding-bottom: 1rem;
+    font-size: 2rem;
     color: #555;
     text-transform: capitalize;
 }
-.products .box-container .box .button{
-    text-align: center;
-    position: absolute;
-    bottom: 30%;
-    right: 7%;
-    border-radius: 20px;
-    background: var(--light-green);
-    padding: .5rem 1 .5rem;
-}
-.products .box-container .box .button i,
-.products .box-container .box .button a{
-    font-size: 1 .3rem;
-    font-weight: bold;
-    margin-right: .5rem;
-    color: #000;
-}
-.products .box-container .box .flex{
-    padding-bottom: 1rem;
-    display: flex;
-    margin-right: auto;
-}
-.products .box-container .box .price{
-    font-size: 1.1rem;
+.products .cart-total p span{
     color: var(--green);
-    margin-right: auto;
 }
-.products .box-container .box .btn{
-    border-radius: .5rem;
-    padding: .5rem .1rem;
-    width: 6.5rem;
+
+/*View Product*/
+.view_page {
+    padding: 5% 8%;
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.view_page form {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    background: #fff;
+    margin: 1rem auto;
+    padding: 2rem;
+    max-width: 1200px; /* Increased the max-width for better horizontal layout */
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.view_page form:hover {
+    transform: translateY(-5px);
+}
+
+.view_page form img {
+    width: 50%; /* Set image width to 50% of the form */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.view_page form .detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    width: 50%; /* Set detail section width to 50% of the form */
+}
+
+.view_page form .name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+}
+
+.view_page form .price {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.view_page form .description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.view_page form .button {
+    display: flex;
+    gap: 1rem;
+}
+
+.view_page form .btn {
+    background: var(--light-green);
+    color: black;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.view_page form .btn i {
+    font-size: 1.2rem;
+}
+
+.view_page form .btn:hover {
+    background: var(--green);
+}
+
+.quantity {
+    display: none;
+}
+
+
+/* Container setup for cart products */
+.cart-products .cart-box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+/* Individual cart product box styling */
+.cart-products .cart-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1rem;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-products .cart-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Cart product image styling */
+.cart-products .cart-img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.cart-products .cart-box:hover .cart-img {
+    transform: scale(1.05);
+}
+
+/* Cart product name styling */
+.cart-products .cart-name {
+    font-size: 1.2rem;
+    color: #333;
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Flex container for price and quantity input */
+.cart-products .cart-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+/* Cart price styling */
+.cart-products .cart-price {
+    font-size: 1.2rem;
+    color: var(--green);
+    font-weight: bold;
+}
+
+/* Cart quantity input styling */
+.cart-products .cart-qty {
+    width: 4rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Cart edit button styling */
+.cart-products .cart-edit-btn {
+    background: url(img/updated.png); /* Replace 'path/to/your-image.png' with your actual image path */
+    background-size: cover;
+    width: 30px; /* Adjust the width and height based on your image size */
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cart-products .cart-edit-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Cart subtotal styling */
+.cart-products .cart-subtotal {
     font-size: 1.1rem;
+    color: #555;
+    margin-top: 1rem;
+}
+
+.cart-products .cart-subtotal span {
+    font-weight: bold;
+    color: var(--green);
+}
+
+/* Cart delete button styling */
+.cart-products .cart-delete-btn {
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.cart-products .cart-delete-btn:hover {
+    background: darken(var(--red), 10%);
+}
+
+/* Cart total container styling */
+.cart-products .cart-total {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: .5rem;
+    max-width: 50vw;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.cart-products .cart-total p {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    color: #555;
+    text-transform: capitalize;
+}
+
+.cart-products .cart-total p span {
+    color: var(--green);
+}
+
+/* Hidden message for no products */
+.cart-products .empty {
+    font-size: 1.5rem;
+    color: #999;
+    text-align: center;
+}
+/*CHECKOUT PAGE*/
+.checkout .row {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column-reverse;
+}
+
+.checkout .row form,
+.checkout .summary {
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    width: 100%; /* Đặt lại width thành 100% để phù hợp với kích thước cha */
+    max-width: 600px; /* Đặt giới hạn tối đa cho chiều rộng nếu cần */
+    padding: 1rem;
+    margin: 1rem auto;
+}
+
+.checkout h3 {
+    font-size: 2rem;
+    color: var(--green);
+    padding-bottom: 1rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.checkout .row form .input {
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    color: #000;
+    font-size: 1.1rem; /* Sửa lỗi khoảng cách font-size */
+    margin: 1rem 0;
+}
+
+.checkout .row form .flex {
+    display: flex;
+    column-gap: 1.5rem; /* Sửa lỗi khoảng cách column-gap */
+    flex-wrap: wrap;
+}
+
+.checkout .row form .flex .box {
+    flex: 1 1 20rem;
+}
+
+.checkout .row form p {
+    padding-top: 1rem;
+    font-size: 1.3rem; /* Sửa lỗi khoảng cách font-size */
+    color: #555;
+    text-transform: capitalize;
+}
+
+.checkout .row form p span {
+    color: red;
+}
+
+.checkout .row form .btn {
+    width: 100%;
+}
+
+.summary .title {
+    font-size: 2.2rem;
+    color: #000;
+    margin-bottom: .5rem;
+    text-transform: capitalize;
+    padding-bottom: 1.5rem;
+}
+
+.summary .flex {
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1.5rem;
+    padding: 1rem;
+    margin: .4rem;
+}
+
+.summary .flex img {
+    box-shadow: var(--box-shadow);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: .4rem;
+    margin-right: 2rem;
+}
+
+.summary .flex .name {
+    font-size: 1.1rem;
+    padding-bottom: .5rem;
+    text-transform: capitalize;
     color: #000;
 }
-.products .box-container .box .flex .fe-edit{
+
+.summary .flex .price {
+    font-size: 1.5rem;
+    color: red;
+}
+
+.summary .grand-total {
+    box-shadow: var(--box-shadow);
     border-radius: .5rem;
-    font-size: 1.7rem;
-    color: #fff;
-    height: 3.5rem;
-    width: 4.5rem;
-    cursor: pointer;
-}
-.products .box-container .box .flex .fe-edit:hover{
-    background: var(--light-green);
-}
-.products .box-container .box .sub-total{
-    padding-bottom: 1rem;
-    font-size: 1.7rem;
-    color: gray;
-}
-.products .box-container .box .sub-total span{
-    color:red;
-}
-.products .box-container .box .button{
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    text-transform: capitalize;
 }
+
+.summary .grand-total span {
+    color: #555;
+}
+
+.summary .grand-total p {
+    color: red;
+}
+
+.main {
+    min-height: calc(100vh - 100px); /* Ensure the main section takes at least the full height minus the footer */
+    padding-bottom: 50px; /* Adjust according to the height of your footer */
+}
+
+.footer {
+    margin-top: auto;
+    height: 50px; /* Adjust to your footer height */
+    background: #f1f1f1;
+    text-align: center;
+    padding: 1rem;
+}
+
 
 
 /*Media Screen*/

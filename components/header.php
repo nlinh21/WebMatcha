@@ -15,17 +15,28 @@
     <a href="#" id="user-btn" class="icon-link">
         <img src="img/user.png" alt="User" class="icon-img">
     </a>
+    <?php
+        $count_wishlist_items = $conn ->prepare("SELECT * FROM `wishlist` WHERE user_id = ?");
+        $count_wishlist_items->execute([$user_id]);
+        $total_wishlist_item = $count_wishlist_items -> rowCount();
+    ?>
     
     <!-- Biểu tượng danh sách ưa thích -->
     <a href="wishlist.php" class="cart-btn icon-link">
         <img src="img/heart.png" alt="Wishlist" class="icon-img">
-        <sup>0</sup>
+        <sup> <?=$total_wishlist_item?> </sup>
     </a>
+
+    <?php
+        $count_cart_items = $conn ->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+        $count_cart_items->execute([$user_id]);
+        $total_cart_item = $count_cart_items -> rowCount();
+    ?>
     
     <!-- Biểu tượng giỏ hàng -->
     <a href="cart.php" class="cart-btn icon-link">
         <img src="img/trolley.png" alt="Cart" class="icon-img">
-        <sup>0</sup>
+        <sup> <?=$total_cart_item?> </sup>
     </a>
     
     <!-- Biểu tượng menu -->
